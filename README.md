@@ -15,6 +15,8 @@ Collection of prototype codes for ehep that we need in daily basis
 - Flat Ntuple maker with MVA score using Uproot package
 - plotting scripts CMS-quality ( matplotlib type plotter modules)
 - Statistical Analysis using CMS-Combine
+- Limit plotting scripts, Systematic variation plotter scripts
+- multiprocessing
 
 ### Tutorials
 - This is for my learning.
