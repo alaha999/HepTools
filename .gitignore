@@ -1,0 +1,6 @@
+storage/
+dev-scripts/
+*.*~
+*.root
+*.pdf
+*.png
