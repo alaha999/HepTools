@@ -5,12 +5,13 @@
 3) example datacard producer notebook: `datacardProducer.ipynb`
 
 
-input is : combined shape histograms
-output is: datacards
+- Input : `combined shape histograms`
+- Output: `datacards`
 
-content of the input shape histograms should be:
+Content of the input shape histograms should be:
+
 ```bash
-$ root <filename>
+$ root shape_histograms/SHAPES_VLLM400_ch3L2018_LTMET.root
 $ _file0->ls()
 
 Name: ch3L2018_LTMET_VLLM400 Title: VLLM400_LTMET
@@ -47,20 +48,20 @@ Name: ch3L2018_LTMET_data_obs Title: data_obs_LTMET
 # Rules and nomenclatures
 
 ### Naming nomenclature:
-
+```
 For each process: Shapes_<process>_ch<channel><year>_<variable>.root
-
 Combined shape histograms: SHAPES_<signal>_ch<channel><year>_<variable>.root
 
 NB: for combined shape histograms <signal> is important, as it distinguishes from other signal mass points.
 
 Example: SHAPES_VLLtauM400_ch3L2018_LTMET.root
-
-It means the shape histograms are for VLLtauM400 signal, channel=3L, year= 2018, discriminating variable=LTMET
+It means the shape histograms are for:
+ - VLLtauM400 signal, channel=3L, year= 2018, discriminating variable = LTMET
 
 This way of naming would be easy to combine channel wise, yearwise later at datacard level
-
+```
 ### Systematics Naming nomenclature
+```
 - nominal: ch<channel><year>_<variable> 
 - Syst Up: ch<channel><year>_<variable>_<SystName>Up
 - Syst Down: ch<channel><year>_<variable>_<SystName>Down
@@ -70,14 +71,14 @@ example:
 - CMS_btagUp: ch3L2018_LTMET_DY_CMS_btagUp
 - CMS_btagDown: ch3L2018_LTMET_DY_CMS_btagDown
 
-Goal of this notebook is to create a root file that contains shape histograms and systematic variations 
-of background processes, signal and data_obs
-
 *data histograms should be always named as: data_obs*
 *for other process: use some sensible names, not too long, not too confusing*
 
+See the example_makeHistograms.ipynb notebook for an example setup 
 
-A few examples,
+```
+
+### Example datacard (with systematics)
 
 ```txt
 imax * number of channels
@@ -126,5 +127,3 @@ rate     11.0 18.0 9.0 24.0
 * autoMCStats 0 0 1
 
 ```
-
-
