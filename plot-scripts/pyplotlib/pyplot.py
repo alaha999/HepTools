@@ -260,9 +260,9 @@ class Plotter():
 
     def legend(self,pos=[0.70,0.01,0.92,0.86],fontsize=0.03,col=1):
         x1,y1,x2,y2=pos[0],pos[1],pos[2],pos[3]
-        if self.pubStyle:
-            x1,y1=0.50,0.40
-            x2,y2=x1+0.15*col,0.86
+        #if self.pubStyle:
+            #x1,y1=0.50,0.40
+            #x2,y2=x1+0.15*col,0.86
             
         #legend
         self.mainleg = ROOT.TLegend(x1,y1,x2,y2)
@@ -298,7 +298,7 @@ class Plotter():
 
         
     def hist(self,histo,color='ROOT.kBlue',label='name',stack=False,fill=False,lwidth=2,ls=0.7,lstyle='ROOT.kSolid',legendStyle='lf',scale=1.0,density=False,isData=False):
-        h=histo.Clone("h")
+        h=histo.Clone(f"h_{label}")
         SetOverflowBin(h)
         #styling
         h.SetLineWidth(lwidth)
@@ -444,7 +444,7 @@ class Plotter():
                 label,histo=item[0],item[-1]                
                 self.mainleg.AddEntry(histo,f"{label}",'l')
 
-            if self.herr:self.mainleg.AddEntry(self.h_err,"Uncertainty","f")
+            if self.h_err:self.mainleg.AddEntry(self.h_err,"Uncertainty","f")
             
         else:
             if(self.h_data!=None and self.h_totbkg.Integral() and self.h_data.Integral()):
@@ -483,7 +483,7 @@ class Plotter():
             StackStyle(h_signal,self.ylabel)
             h_signal.GetXaxis().SetRangeUser(self.xrange[0],self.xrange[1])
             h_signal.GetYaxis().SetRangeUser(self.yrange[0],self.yrange[1])
-            if(index==0 and self.h_stack!=None):
+            if(index==0 and self.h_stack==None):
                 h_signal.Draw("HIST")
             else:
                 h_signal.Draw("HIST SAME")
@@ -535,7 +535,7 @@ class Plotter():
                     self.h_ratio.SetBinContent(i,-10)
 
         else:
-            self.h_ratio = self.totbkg.Clone("h_ratio")
+            self.h_ratio = self.h_totbkg.Clone("h_ratio")
             RatioHistoStyle(self.h_ratio,self.xlabel,self.ylabel_ratio)
             self.h_ratio.SetMarkerSize(0)
             self.h_ratio.SetFillColor(0)
